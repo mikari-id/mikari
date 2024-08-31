@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .big-title {
+    @apply font-sans text-7xl font-semibold leading-27;
+  }
+
+  .heading-1 {
+    @apply font-sans text-[40px] font-semibold leading-15 tracking-[0.8px];
+  }
+
+  .heading-2 {
+    @apply leading-11 font-sans text-4xl font-semibold tracking-[0.64px];
+  }
+
+  .heading-3 {
+    @apply font-sans text-3xl font-semibold leading-10 tracking-[0.6px];
+  }
+
+  .heading-4 {
+    @apply font-sans text-2xl font-semibold leading-9 tracking-[0.48px];
+  }
+
+  .heading-5 {
+    @apply font-sans text-xl font-semibold leading-8 tracking-[0.4px];
+  }
+
+  .heading-6 {
+    @apply font-sans text-lg font-semibold leading-6 tracking-[0.36px];
+  }
+}
