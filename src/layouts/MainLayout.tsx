@@ -1,11 +1,19 @@
 import { IconBrandGithub, IconBrandInstagram } from "@tabler/icons-react";
-import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { twJoin } from "tailwind-merge";
 import Button from "../components/Button";
 
 const navLinks = {
   Home: "/",
   Pricing: "/pricing",
+  Contact: "/contact",
 };
 
 function Header() {
@@ -33,7 +41,7 @@ function Header() {
           </NavLink>
         ))}
       </nav>
-      <Button text="Contact Us" onClick={() => navigate("/contact")} />
+      <Button text="Order Now!" onClick={() => navigate("/order")} />
     </header>
   );
 }
@@ -71,6 +79,11 @@ function Footer() {
 }
 
 export default function MainLayout() {
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   return (
     <>
       <Header />

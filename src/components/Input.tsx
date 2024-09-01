@@ -8,6 +8,8 @@ export type InputProps = {
   type?: HTMLInputTypeAttribute;
   className?: string;
   placeholder?: string;
+  value?: string;
+  onChange?: (newValue: string) => void;
 };
 
 export default function Input({
@@ -31,6 +33,8 @@ export default function Input({
         type={type}
         className="h-16 w-full rounded-xl bg-white-grey px-4 py-2.5 font-sans text-lg leading-7 tracking-[0.36px] text-black placeholder-grey outline-none"
         placeholder={props.placeholder}
+        value={props.value}
+        onChange={(e) => props.onChange?.(e.target.value)}
       />
     </div>
   );

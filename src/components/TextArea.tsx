@@ -6,6 +6,8 @@ export type TextAreaProps = {
   required?: boolean;
   className?: string;
   placeholder?: string;
+  value?: string;
+  onChange?: (newValue: string) => void;
 };
 
 export default function TextArea({
@@ -27,6 +29,8 @@ export default function TextArea({
         required={required}
         className="h-40 w-full grow resize-none rounded-xl bg-white-grey px-4 py-2.5 font-sans text-lg leading-7 tracking-[0.36px] text-black placeholder-grey outline-none"
         placeholder={props.placeholder}
+        value={props.value}
+        onChange={(e) => props.onChange?.(e.target.value)}
       ></textarea>
     </div>
   );

@@ -1,14 +1,21 @@
 import { IconShoppingCartFilled, IconWorld } from "@tabler/icons-react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 
 function Title() {
+  const navigate = useNavigate();
+
   return (
     <div className="flex basis-1/2 flex-col gap-6">
       <h2 className="big-title text-black">Build your own website now</h2>
-      <p className="trackin-[0.4px] text-grey font-sans text-xl leading-7">
+      <p className="trackin-[0.4px] font-sans text-xl leading-7 text-grey">
         Build a website that keeps your audience coming back
       </p>
-      <Button text="Get Started" className="mt-3" />
+      <Button
+        text="Get Started"
+        className="mt-3"
+        onClick={() => navigate("/order")}
+      />
     </div>
   );
 }
@@ -26,13 +33,13 @@ function Image() {
         {Array.from({ length: 64 }).map((_, index) => (
           <span
             key={index}
-            className="bg-white-grey h-2 w-2 rounded-full"
+            className="h-2 w-2 rounded-full bg-white-grey"
           ></span>
         ))}
       </div>
-      <span className="bg-green absolute left-[540px] top-[540px] z-10 size-11 rounded-full"></span>
-      <span className="bg-yellow absolute left-0 top-40 z-10 size-7 rounded-full"></span>
-      <span className="bg-purple absolute left-24 top-[520px] z-10 size-28 rounded-full"></span>
+      <span className="absolute left-[540px] top-[540px] z-10 size-11 rounded-full bg-green"></span>
+      <span className="absolute left-0 top-40 z-10 size-7 rounded-full bg-yellow"></span>
+      <span className="absolute left-24 top-[520px] z-10 size-28 rounded-full bg-purple"></span>
       <img
         src="/Hero.jpg"
         alt="hero"
@@ -42,10 +49,10 @@ function Image() {
   );
 }
 
-export default function Home() {
+export default function Hero() {
   return (
     <div className="flex w-full flex-col gap-12">
-      <div className="px-18 flex items-center pb-36">
+      <div className="flex items-center px-18 pb-36">
         <Title />
         <Image />
       </div>
