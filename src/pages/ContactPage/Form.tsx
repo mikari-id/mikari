@@ -1,9 +1,9 @@
-import emailjs from "@emailjs/browser";
-import { FormEvent, useCallback, useState } from "react";
+import { useState } from "react";
 import { twJoin } from "tailwind-merge";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import TextArea from "../../components/TextArea";
+import { sendEmail } from "../../libs/email";
 
 export default function Form() {
   const [values, setValues] = useState({
@@ -18,43 +18,27 @@ export default function Form() {
     false | "mengirim" | "terkirim" | "gagal"
   >(false);
 
-  const onSubmit = useCallback(
-    (e: FormEvent) => {
-      e.preventDefault();
-
-      setStatus("mengirim");
-
-      emailjs
-        .send(
-          import.meta.env.VITE_EMAILJS_SERVICE_ID,
-          import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-          values,
-          { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY },
-        )
-        .then(() => {
-          setStatus("terkirim");
-        })
-        .catch((e) => {
-          console.error(e);
-          setStatus("gagal");
-        });
-    },
-    [values],
-  );
-
   return (
     <form
-      onSubmit={onSubmit}
+      onSubmit={(e) => {
+        e.preventDefault();
+
+        if (status === "mengirim") return;
+
+        setStatus("mengirim");
+        sendEmail(values)
+          .then(() => setStatus("terkirim"))
+          .catch(() => setStatus("gagal"));
+      }}
       className="rounded-4xl z-10 flex w-full flex-col gap-12 bg-white px-18 py-12 shadow-lg"
     >
-      <div className="flex w-full gap-12">
+      <div className="grid w-full grid-cols-2 gap-12">
         <Input
           name="name"
           label="Name"
           required
           type="text"
           placeholder="Your full name"
-          className="basis-1/2"
           value={values.name}
           onChange={(name) => setValues((prev) => ({ ...prev, name }))}
         />
@@ -64,19 +48,17 @@ export default function Form() {
           required
           type="email"
           placeholder="Your email"
-          className="basis-1/2"
           value={values.email}
           onChange={(email) => setValues((prev) => ({ ...prev, email }))}
         />
       </div>
-      <div className="flex w-full gap-12">
+      <div className="grid w-full grid-cols-2 gap-12">
         <Input
           name="phone"
           label="Phone"
           required
           type="tel"
           placeholder="Your phone number"
-          className="basis-1/2"
           value={values.phone}
           onChange={(phone) => setValues((prev) => ({ ...prev, phone }))}
         />
@@ -86,7 +68,6 @@ export default function Form() {
           required
           type="text"
           placeholder="Subject"
-          className="basis-1/2"
           value={values.subject}
           onChange={(subject) => setValues((prev) => ({ ...prev, subject }))}
         />
@@ -96,17 +77,13 @@ export default function Form() {
         label="Message"
         required
         placeholder="Write your message"
-        className="w-full"
         value={values.message}
         onChange={(message) => setValues((prev) => ({ ...prev, message }))}
       />
-      <Button
-        text={status === "mengirim" ? "Sending..." : "Send!"}
-        className="w-full"
-      />
+      <Button text="Send!" className="w-full" />
       <p
         className={twJoin(
-          "font-sans text-xl font-medium leading-7 tracking-[0.4px] text-brand",
+          "text-center font-sans text-xl font-medium leading-7 tracking-[0.4px] text-brand",
           status === false && "hidden",
         )}
       >

@@ -31,6 +31,7 @@ export default function ContactPage() {
             <Link
               to="mailto:mikariteam@gmail.com"
               className="font-sans text-lg font-semibold leading-7 tracking-[0.36px] text-brand"
+              target="_blank"
             >
               mikariteam@gmail.com
             </Link>
@@ -44,8 +45,9 @@ export default function ContactPage() {
               Call us to speak to a member of our team.
             </p>
             <Link
-              to=""
+              to="https://wa.me/6285218606125"
               className="font-sans text-lg font-semibold leading-7 tracking-[0.36px] text-brand"
+              target="_blank"
             >
               +62 852 1860 6125
             </Link>
@@ -58,7 +60,13 @@ export default function ContactPage() {
             <p className="font-sans text-xl leading-7 tracking-[0.4px] text-grey">
               Check out helpful resources, FAQs and developer tools.
             </p>
-            <Button text="Support Center" iconTrailing={IconArrowRight} />
+            <Button
+              text="Support Center"
+              iconTrailing={IconArrowRight}
+              onClick={() =>
+                window.open("https://wa.me/6285218606125", "_blank")
+              }
+            />
           </div>
         </div>
       </div>
