@@ -1,5 +1,6 @@
 import { IconBrandGithub, IconBrandInstagram } from "@tabler/icons-react";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet";
 import {
   Link,
   NavLink,
@@ -9,7 +10,7 @@ import {
 } from "react-router-dom";
 import { twJoin } from "tailwind-merge";
 import Button from "../components/Button";
-
+import Image from "../components/Image";
 const navLinks = {
   Home: "/",
   Pricing: "/pricing",
@@ -22,7 +23,7 @@ function Header() {
   return (
     <header className="sticky top-0 z-50 flex w-full items-center justify-between bg-white px-18 py-6">
       <div className="flex items-center gap-4">
-        <img src="/Logo.svg" alt="Logo" className="w-14 rounded-lg" />
+        <Image src="/Logo.svg" alt="Logo" className="w-14 rounded-lg" />
         <h1 className="heading-3 text-brand">Mikari</h1>
       </div>
       <nav className="relative flex items-center gap-14 p-2">
@@ -51,7 +52,7 @@ function Footer() {
     <footer className="flex items-center justify-between p-18">
       <div className="flex w-80 flex-col gap-6">
         <div className="flex items-center gap-4">
-          <img src="/Logo.svg" alt="Logo" className="size-14 rounded-lg" />
+          <Image src="/Logo.svg" alt="Logo" className="size-14 rounded-lg" />
           <h1 className="heading-3 text-brand">Mikari</h1>
         </div>
         <p className="font-sans text-xl leading-7 tracking-[0.4px] text-grey">
@@ -86,6 +87,15 @@ export default function MainLayout() {
 
   return (
     <>
+      <Helmet>
+        <title>
+          Mikari - Build beautiful websites at budget-friendly prices
+        </title>
+        <meta
+          name="description"
+          content="Build beautiful websites at budget-friendly prices"
+        />
+      </Helmet>
       <Header />
       <Outlet />
       <Footer />

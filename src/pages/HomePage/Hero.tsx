@@ -1,8 +1,9 @@
 import { IconShoppingCartFilled, IconWorld } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
+import Image from "../../components/Image";
 
-function Title() {
+function Left() {
   const navigate = useNavigate();
 
   return (
@@ -20,7 +21,7 @@ function Title() {
   );
 }
 
-function Image() {
+function Right() {
   return (
     <div className="relative h-[640px] basis-1/2">
       <div className="absolute left-12 top-10 z-10 flex items-center justify-center rounded-3xl bg-brand/30 p-7 backdrop-blur-sm">
@@ -40,7 +41,7 @@ function Image() {
       <span className="absolute left-[540px] top-[540px] z-10 size-11 rounded-full bg-green"></span>
       <span className="absolute left-0 top-40 z-10 size-7 rounded-full bg-yellow"></span>
       <span className="absolute left-24 top-[520px] z-10 size-28 rounded-full bg-purple"></span>
-      <img
+      <Image
         src="/Hero.jpg"
         alt="hero"
         className="absolute left-1/2 top-1/2 size-[580px] -translate-x-1/2 -translate-y-1/2 rounded-full rounded-tr-none object-cover"
@@ -53,8 +54,8 @@ export default function Hero() {
   return (
     <div className="flex w-full flex-col gap-12">
       <div className="flex items-center px-18 pb-36">
-        <Title />
-        <Image />
+        <Left />
+        <Right />
       </div>
     </div>
   );
